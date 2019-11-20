@@ -105,7 +105,7 @@ export class EditProfileComponent implements OnInit {
 
 
   isMobile() {
-    return (window.innerWidth <= 450);
+    return (window.innerWidth <= 800);
   }
   isDateNull() {
     return (this.userData.dateOfBirth == null);

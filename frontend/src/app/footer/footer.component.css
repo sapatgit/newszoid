@@ -17,3 +17,17 @@
 margin-bottom: 0px;
 position : fixed;
 }
+.copyright{
+  font-size: 15px;
+}
+#icons:hover{
+  transform: scale(1.2);
+}
+@media only screen and (max-width: 500px) {
+  #icons{
+    font-size: 70%;
+  }
+  .icon-button{
+    font-size: 70%;
+  }
+}
