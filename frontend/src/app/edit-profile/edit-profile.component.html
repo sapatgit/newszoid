@@ -180,15 +180,12 @@
             </mat-step>
 
             <mat-step [stepControl]="thirdFormGroup" optional>
-                <form [formGroup]="thirdFormGroup" class='container' fxLayout="column" fxLayoutAlign="start start"
-                    style="min-height: min-content;">
+                <form [formGroup]="thirdFormGroup" class='container'>
                     <ng-template matStepLabel>Your Preferences</ng-template>
                     <p>
                         Below are options from which you can select your interests in news!
                     </p>
-                    <div>
-                        Selected: {{ selectedOption | json }}
-                    </div>
+                    
                     
                     <mat-selection-list #list [(ngModel)]="selectedOptions" [ngModelOptions]="{standalone: true}"
                         (ngModelChange)="onNgModelChange($event)">

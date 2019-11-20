@@ -82,18 +82,18 @@ chargeCreditCard(name, pass, num, exp, cvv) {
     this.loadStripe();
     this.breakpoint = (window.innerWidth <= 600) ? 1 : 2;
     this.firstFormGroup = this.formBuilder.group({
-      // name: ['', Validators.required],
-      // password: ['', [Validators.required]]
-    });
+      name: ['', Validators.required],
+      password: ['', [Validators.required]]
+      });
 
-    this.firstFormGroup.statusChanges.subscribe(
-      status => {
-        if (status === 'VALID') {
-          this.stepper.next();
-        }
-        // console.log(status);
-      }
-    );
+    // // this.firstFormGroup.statusChanges.subscribe(
+    // //   status => {
+    // //     if (status === 'VALID') {
+    // //       this.stepper.next();
+    // //     }
+    // //     // console.log(status);
+    // //   }
+    // );
     this.secondFormGroup = this.formBuilder.group({
     });
     this.thirdFormGroup = this.formBuilder.group({
