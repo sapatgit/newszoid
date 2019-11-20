@@ -1,6 +1,6 @@
 <mat-card class="post">
-   <mat-video #video [preload]="true" [autoplay]="true" [overlay]="true"
-             color="primary" spinner="spin" src="{{post?.videoUrl}}">
+  <mat-video #video [preload]="true" [autoplay]="true" [overlay]="true" color="primary" spinner="spin"
+    src="{{post?.videoUrl}}">
   </mat-video>
   <br>
   <mat-card-title>{{post?.title}}</mat-card-title>
@@ -10,17 +10,32 @@
       {{post?.postedBy}}
     </mat-card-subtitle>
     <mat-card-subtitle style="display: flex; align-items: center">
-      <mat-icon>remove_red_eye</mat-icon>  {{views}} |
+      <mat-icon>remove_red_eye</mat-icon> {{views}} |
       <mat-icon>access_time</mat-icon> {{post?.timestamp | date:'mediumDate'}} |
       <mat-icon>category</mat-icon>{{post?.category}} |
+     
+      <!-- <div *ngIf="post && wakeMe(post) else notJson" >
+        
+        <mat-icon>my_location</mat-icon>{{post1}}
+        
+      </div>
+
+
+      <ng-template #notJson>
+        <mat-icon>my_location</mat-icon>{{post?.location}}
+      </ng-template>
+
+      <button (click)="wakeMe(post)">wake111</button> -->
       <mat-icon>my_location</mat-icon>{{post?.location}}
+
+
     </mat-card-subtitle>
   </div>
   <mat-card-actions style="display: flex; align-items: center">
-      <mat-icon (click)="like()" class="icon-disabled" [ngClass]="{'icon-enabled': getIsLiked()}">thumb_up</mat-icon>
-      {{likes}}
-      <mat-icon (click)="flag()" class="icon-disabled" [ngClass]="{'icon-enabled': getIsFlagged()}">flag</mat-icon>
-      {{flags}}
+    <mat-icon (click)="like()" class="icon-disabled" [ngClass]="{'icon-enabled': getIsLiked()}">thumb_up</mat-icon>
+    {{likes}}
+    <mat-icon (click)="flag()" class="icon-disabled" [ngClass]="{'icon-enabled': getIsFlagged()}">flag</mat-icon>
+    {{flags}}
     <div *ngIf="isOwner">
       <button mat-icon-button (click)="edit()">Edit</button>
       <button mat-icon-button (click)="delete()">Delete</button>
