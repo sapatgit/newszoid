@@ -5,6 +5,8 @@ import com.stackroute.contentservice.domain.SortByViews;
 import com.stackroute.contentservice.exception.PostAlreadyExistsException;
 import com.stackroute.contentservice.exception.PostNotFoundException;
 import com.stackroute.contentservice.repository.PostRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService{
+
+    private static final Logger logger = LoggerFactory.getLogger(PostServiceImpl.class);
+
     private PostRepository postRepository;
 
     @Autowired
@@ -84,7 +89,6 @@ public class PostServiceImpl implements PostService{
 
         LocalDate localDate = LocalDate.now();
         String str=localDate.toString();
-      //  System.out.println("today"+str);
         List<Post> trendingPosts=new ArrayList<Post>();
         for(Post post:posts){
             String string=post.getTimestamp()
@@ -92,7 +96,7 @@ public class PostServiceImpl implements PostService{
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate()
                     .toString();
-            System.out.println("postdate:"+string);
+            logger.debug("postdate:"+string);
             if(string.equals(str)){
                 trendingPosts.add(post);
             }

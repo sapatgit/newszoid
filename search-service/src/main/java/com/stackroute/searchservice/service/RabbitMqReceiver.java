@@ -11,6 +11,8 @@ import com.stackroute.searchservice.exceptions.CategoryAlreadyExistsException;
 import com.stackroute.searchservice.exceptions.CategoryNotFoundException;
 import com.stackroute.searchservice.exceptions.LocationAlreadyExistsException;
 import com.stackroute.searchservice.exceptions.LocationNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ import java.util.List;
 public class RabbitMqReceiver {
     private LocationService locationService;
     private CategoryService categoryService;
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMqReceiver.class);
+
 
     @Autowired
     public RabbitMqReceiver(LocationService locationService, CategoryService categoryService) {
@@ -32,7 +36,6 @@ public class RabbitMqReceiver {
     }
 
     public void receiveMessage(String message) {
-        System.out.println("in receiver");
         try {
             PostDTO postDTO = new ObjectMapper().readValue(message, PostDTO.class);
             Post post = Post.builder()
@@ -54,7 +57,6 @@ public class RabbitMqReceiver {
                 while(itr.hasNext()) {
                     Post postFind = (Post) itr.next();
                     if(postFind.getId().equals(post.getId())) {
-                        System.out.printf("found!");
                         itr.remove();
                     }
                 }
@@ -71,7 +73,7 @@ public class RabbitMqReceiver {
                 try {
                     locationService.addLocation(location);
                 } catch (LocationAlreadyExistsException ex) {
-                    ex.printStackTrace();
+                    logger.error("Location already exist");
                 }
             }
 
@@ -82,7 +84,6 @@ public class RabbitMqReceiver {
                 while(itr.hasNext()) {
                     Post postFind = (Post) itr.next();
                     if(postFind.getId().equals(post.getId())) {
-                        System.out.printf("found!");
                         itr.remove();
                     }
                 }
@@ -99,15 +100,15 @@ public class RabbitMqReceiver {
                 try {
                     categoryService.addCategory(category);
                 } catch (CategoryAlreadyExistsException ex) {
-                    ex.printStackTrace();
+                    logger.error("Category Already Exist");
                 }
             }
         } catch (JsonParseException e) {
-            e.printStackTrace();
+            logger.error("JsonParseException");
         } catch (JsonMappingException e) {
-            e.printStackTrace();
+            logger.error("JsonMappingException");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("IOexception");
         }
     }
 }

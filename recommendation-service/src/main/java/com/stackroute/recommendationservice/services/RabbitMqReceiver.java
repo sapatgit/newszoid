@@ -2,6 +2,8 @@ package com.stackroute.recommendationservice.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.recommendationservice.domain.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,9 @@ import java.util.*;
 
 @Service
 public class RabbitMqReceiver {
+
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMqReceiver.class);
+
 
     @Autowired
     QueryService queryService;
@@ -28,13 +33,15 @@ public class RabbitMqReceiver {
                     .timestamp(postDTO.getTimestamp())
                     .tags(postDTO.getTags())
                     .build();
-            System.out.println(postDTO.toString());
+            //System.out.println(postDTO.toString());
+            logger.debug(postDTO.toString());
             try {
                 user = queryService.getUser(postDTO.getPostedBy());
             }
             catch (NullPointerException e) {
                 //e.printStackTrace();
-                System.out.println("User not found");
+                //System.out.println("User not found");
+                logger.error("User not found in RabbitMqReceiver.receivePosts()");
                 return;
             }
             if(user == null) {
@@ -77,7 +84,8 @@ public class RabbitMqReceiver {
             }
             queryService.saveUser(user);
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("Recommendation service: IOexception in RabbitMqReceiver.receivePosts");
         }
     }
 
@@ -85,14 +93,16 @@ public class RabbitMqReceiver {
         UserDTO userDTO = null;
         User user = null;
         try {
-            System.out.println(message);
+            //System.out.println(message);
+            logger.debug(message);
             userDTO = new ObjectMapper().readValue(message, UserDTO.class);
 
             user = User.builder()
                     .username(userDTO.getUsername())
                     .build();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("IOexception in RabbitMqReceiver.receiveUsers()");
         }
         try {
             queryService.removeAgeGroupRel(userDTO.getUsername());

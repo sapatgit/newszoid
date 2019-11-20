@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stackroute.registrationservice.domain.Post;
 import com.stackroute.registrationservice.domain.PostDTO;
 import com.stackroute.registrationservice.domain.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Service
 public class RabbitMqReceiverService {
+    private static final Logger logger = LoggerFactory.getLogger(RabbitMqReceiverService.class);
+
 
     @Autowired
     private UserRegistrationService userRegistrationService;
@@ -36,7 +40,6 @@ public class RabbitMqReceiverService {
                 while(itr.hasNext()) {
                     Post postFind = (Post) itr.next();
                     if(postFind.getId().equals(post.getId())) {
-                        System.out.printf("found!");
                         itr.remove();
                     }
                 }
@@ -54,7 +57,6 @@ public class RabbitMqReceiverService {
                             while(itr.hasNext()) {
                                 Post postFind = (Post) itr.next();
                                 if(postFind.getId().equals(post.getId())) {
-                                    System.out.printf("found!");
                                     itr.remove();
                                 }
                             }
@@ -75,7 +77,6 @@ public class RabbitMqReceiverService {
                             while(itr.hasNext()) {
                                 Post postFind = (Post) itr.next();
                                 if(postFind.getId().equals(post.getId())) {
-                                    System.out.printf("found!");
                                     itr.remove();
                                 }
                             }
@@ -96,7 +97,6 @@ public class RabbitMqReceiverService {
                             while(itr.hasNext()) {
                                 Post postFind = (Post) itr.next();
                                 if(postFind.getId().equals(post.getId())) {
-                                    System.out.printf("found!");
                                     itr.remove();
                                 }
                             }
@@ -111,7 +111,8 @@ public class RabbitMqReceiverService {
             }
             userRegistrationService.updateUser(user);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.error("Exception in RabbitMqReceiverService.receiveMessage()");
         }
     }
 }

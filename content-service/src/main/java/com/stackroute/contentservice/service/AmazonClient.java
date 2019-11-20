@@ -7,6 +7,8 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +21,9 @@ import java.util.Date;
 
 @Service
 public class AmazonClient {
+
+    private static final Logger logger = LoggerFactory.getLogger(AmazonClient.class);
+
 
     private AmazonS3 s3client;
 
@@ -50,7 +55,7 @@ public class AmazonClient {
             uploadFileTos3bucket(fileName, file);
             file.delete();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Upload File exception");
         }
         return fileUrl;
     }
