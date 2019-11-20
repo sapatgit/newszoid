@@ -1,13 +1,13 @@
-import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
-import {environment} from '../../environments/environment';
-import {MatVideoComponent} from 'mat-video/app/video/video.component';
-import {MatDialog, MatDialogConfig} from '@angular/material';
-import {EditpostComponent} from '../editpost/editpost.component';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { MatVideoComponent } from 'mat-video/app/video/video.component';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { EditpostComponent } from '../editpost/editpost.component';
 import { DOCUMENT } from '@angular/common';
-import {FlagPostComponent} from '../flag-post/flag-post.component';
-import {LoginComponent} from '../login/login.component';
+import { FlagPostComponent } from '../flag-post/flag-post.component';
+import { LoginComponent } from '../login/login.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,6 +27,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   isFlagged: boolean;
   isOwner: boolean;
   user: any;
+  post1: any;
 
   httpOptions = {
     headers: new HttpHeaders(
@@ -36,14 +37,14 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
       })
   };
 
-  @ViewChild('video', {static: false}) matVideo: MatVideoComponent;
+  @ViewChild('video', { static: false }) matVideo: MatVideoComponent;
   video: HTMLVideoElement;
 
   constructor(private http: HttpClient,
               public dialog: MatDialog,
               private route: ActivatedRoute,
               private router: Router,
-              @Inject(DOCUMENT) private document: Document) {}
+              @Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
     if (localStorage.getItem('jwt') == null) {
@@ -147,56 +148,56 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   }
 
   flag() {
-      if (this.flags === 0) {
-        const flags: string[] = new Array();
-        flags.push(localStorage.getItem('username'));
-        this.post.flaggedBy = flags;
-        this.user.flagged.push(this.post);
-        const dialogRef = this.dialog.open(FlagPostComponent, {
-          width: '250px',
-        });
+    if (this.flags === 0) {
+      const flags: string[] = new Array();
+      flags.push(localStorage.getItem('username'));
+      this.post.flaggedBy = flags;
+      this.user.flagged.push(this.post);
+      const dialogRef = this.dialog.open(FlagPostComponent, {
+        width: '250px',
+      });
 
-        dialogRef.afterClosed().subscribe(result => {
-          if (result != null) {
-            return;
-          }
-          this.http.put(environment.uploadPostUrl, this.post, this.httpOptions).subscribe(
-            (data) => {
-              this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
-              this.ngOnInit();
-            }
-          );
-        });
-      } else {
-        const index = this.post.flaggedBy.indexOf(localStorage.getItem('username'));
-        if (index !== -1) {
-          this.post.flaggedBy.splice(index, 1);
-          const ind = this.user.flagged.indexOf(this.postId);
-          if (ind !== -1) {
-            this.user.flagged.splice(ind, 1);
-          }
-          this.isFlagged = false;
-        } else {
-          this.user.flagged.push(this.post);
-          this.post.flaggedBy.push(localStorage.getItem('username'));
+      dialogRef.afterClosed().subscribe(result => {
+        if (result != null) {
+          return;
         }
-
-        const dialogRef = this.dialog.open(FlagPostComponent, {
-          width: '250px',
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-          if (result != null) {
-            return;
+        this.http.put(environment.uploadPostUrl, this.post, this.httpOptions).subscribe(
+          (data) => {
+            this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
+            this.ngOnInit();
           }
-          this.http.put(environment.uploadPostUrl, this.post, this.httpOptions).subscribe(
-            (data) => {
-              this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
-              this.ngOnInit();
-            }
-          );
-        });
+        );
+      });
+    } else {
+      const index = this.post.flaggedBy.indexOf(localStorage.getItem('username'));
+      if (index !== -1) {
+        this.post.flaggedBy.splice(index, 1);
+        const ind = this.user.flagged.indexOf(this.postId);
+        if (ind !== -1) {
+          this.user.flagged.splice(ind, 1);
+        }
+        this.isFlagged = false;
+      } else {
+        this.user.flagged.push(this.post);
+        this.post.flaggedBy.push(localStorage.getItem('username'));
       }
+
+      const dialogRef = this.dialog.open(FlagPostComponent, {
+        width: '250px',
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result != null) {
+          return;
+        }
+        this.http.put(environment.uploadPostUrl, this.post, this.httpOptions).subscribe(
+          (data) => {
+            this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
+            this.ngOnInit();
+          }
+        );
+      });
+    }
   }
 
   watch() {
@@ -214,7 +215,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     }
 
     this.http.put(environment.uploadPostUrl, this.post, this.httpOptions).subscribe(
-      () =>  {
+      () => {
         this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
         this.ngOnInit();
       }
@@ -250,7 +251,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     }
 
     this.http.put(environment.uploadPostUrl, this.post, this.httpOptions).subscribe(
-      () =>  {
+      () => {
         this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
         this.ngOnInit();
       }
@@ -275,6 +276,24 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
     this.http.delete(environment.uploadPostUrl + this.postId, this.httpOptions).subscribe();
     this.router.navigateByUrl('/posted');
+  }
+
+  wakeMe(post) {
+    console.log(JSON.parse(post.location).geometry);
+    try {
+      // JSON.parse(post.location).geometry;
+      console.log('aaaa');
+
+      this.post1 = JSON.parse(post.location);
+      console.log(this.post1);
+
+      console.log(this.post1.geometry);
+      return true;
+    } catch (err) {
+    console.log('bbbb');
+
+    return false; }
+
   }
 
 }

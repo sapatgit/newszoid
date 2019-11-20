@@ -66,6 +66,7 @@ import { SubscriptionPageComponent } from './subscription-page/subscription-page
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FooterComponent } from './footer/footer.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   declarations: [
     AppComponent,
@@ -138,7 +139,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     MatExpansionModule,
     MatPaginatorModule,
     MatButtonToggleModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    GoogleMapsModule
   ],
   entryComponents: [
     LoginComponent,
