@@ -154,6 +154,7 @@ public class UserController {
             User savedUser = userRegistrationService.saveUser(user);
             UserDTO userDTO = new UserDTO(user.getUsername(), bcryptEncoder.encode(userDao.getPassword()));
             rabbitTemplate.convertAndSend(topicExchangeName, routingKey, new ObjectMapper().writeValueAsString(userDTO));
+            rabbitTemplate.convertAndSend(topicExchangeName, neo4jRoutingKey, new ObjectMapper().writeValueAsString(userDao));
             responseEntity = new ResponseEntity<User>( savedUser,HttpStatus.CREATED);
         } catch (UserAlreadyExistsException e) {
             responseEntity = new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);

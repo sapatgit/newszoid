@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
+// tslint:disable-next-line: class-name
 class category {
   name: string;
   icon: string;
@@ -60,8 +61,8 @@ export class CategoryComponent implements OnInit {
       },
     ];
   constructor(private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router) { }
+              private http: HttpClient,
+              private router: Router) { }
   ngOnInit() {
 
     this.route.url.subscribe(url => {
@@ -83,6 +84,7 @@ export class CategoryComponent implements OnInit {
       };
       this.http.get(environment.categoryUrl + this.category.name, httpOptions).subscribe(
         (data) => {
+          // tslint:disable-next-line: no-string-literal
           this.posts = data['posts'];
           this.getData({ pageIndex: this.page, pageSize: this.size });
 
@@ -100,9 +102,9 @@ export class CategoryComponent implements OnInit {
   }
 
   getData(obj) {
-    let index = 0,
-      startingIndex = obj.pageIndex * obj.pageSize,
-      endingIndex = startingIndex + obj.pageSize;
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
 
     this.data = this.posts.filter(() => {
       index++;

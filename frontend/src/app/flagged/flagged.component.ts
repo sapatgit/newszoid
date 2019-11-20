@@ -33,9 +33,9 @@ export class FlaggedComponent implements OnInit {
   }
 
   getData(obj) {
-    let index = 0,
-      startingIndex = obj.pageIndex * obj.pageSize,
-      endingIndex = startingIndex + obj.pageSize;
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
 
     this.data = this.posts.filter(() => {
       index++;

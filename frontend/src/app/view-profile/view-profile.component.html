@@ -2,20 +2,20 @@
     <mat-card-title class="title" style="color: #673ab7">Your registration details</mat-card-title>
 </mat-card>
 <section>
-    <h2 class="title">Hello there, {{userData.username}} !</h2>
+    <h2 class="title">Hello there, {{userData?.username}} !</h2>
     <mat-divider></mat-divider>
     <br>
     <div class="title">
-        Your Email Address : <i>{{userData.email}}</i>
+        Your Email Address : <i>{{userData?.email}}</i>
         <br>
-        Full Name : <i>{{userData.name}}</i>
+        Full Name : <i>{{userData?.name}}</i>
         <mat-divider></mat-divider>
         <div>
             <h3>Categories that suit your taste:</h3>
                        <section style="width:70%;margin: auto">
             <mat-chip-list aria-label="your interests" style="margin: auto">
                 <div style="margin: auto">
-                <mat-chip color="primary" *ngFor="let interests of userData.newsPreferences"
+                <mat-chip color="primary" *ngFor="let interests of userData?.newsPreferences"
                 [routerLink]="['/category', interests]" selected>{{interests}}
                 </mat-chip>
                 <!-- <mat-chip color="accent" selected>Accent fish</mat-chip> -->

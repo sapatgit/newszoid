@@ -34,18 +34,20 @@ export class GraphComponent implements OnInit {
       if (data) {
         data.forEach(post => {
           this.category1.push(post.category);
-          if (this.title.length < 10)
+          if (this.title.length < 10) {
             this.title.push(post.title);
-          this.views.push(post['watchedBy'].length);
-          if (post['likedBy'] == null) {
-            this.likes.push(0);
           }
-          else
-            this.likes.push(post['likedBy'].length);
-          if (post['flaggedBy'] == null)
+          this.views.push(post.watchedBy.length);
+          if (post.likedBy == null) {
+            this.likes.push(0);
+          } else {
+            this.likes.push(post.likedBy.length);
+          }
+          if (post.flaggedBy == null) {
             this.flag.push(0);
-          else
+          } else {
             this.flag.push(post['flaggedBy'].length);
+          }
         });
       }
       this.chart = new Chart(this.chartRef.nativeElement, {
@@ -112,7 +114,7 @@ export class GraphComponent implements OnInit {
   }
 
   PieChart() {
-    let categories: {
+    const categories: {
       name: string;
     }[] = [
         {
@@ -158,7 +160,7 @@ export class GraphComponent implements OnInit {
     const len = categories.length;
     categories.forEach(category => {
       i++;
-      let url = 'https://newszoid.stackroute.io:8443/content-service/api/v1/posts/' + category.name;
+      const url = 'https://newszoid.stackroute.io:8443/content-service/api/v1/posts/' + category.name;
       this.http.get(url, httpOptions).subscribe((data1: any) => {
         this.count.push(data1.length);
         this.category2.push(category.name);

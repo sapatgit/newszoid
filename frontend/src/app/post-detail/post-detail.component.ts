@@ -8,6 +8,7 @@ import {EditpostComponent} from '../editpost/editpost.component';
 import { DOCUMENT } from '@angular/common';
 import {FlagPostComponent} from '../flag-post/flag-post.component';
 import {LoginComponent} from '../login/login.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-detail',
@@ -41,6 +42,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   constructor(private http: HttpClient,
               public dialog: MatDialog,
               private route: ActivatedRoute,
+              private router: Router,
               @Inject(DOCUMENT) private document: Document) {}
 
   ngOnInit() {
@@ -108,7 +110,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
 
   like() {
     if (this.likes === 0) {
-      let likes: string[] = [];
+      const likes: string[] = [];
       likes.push(localStorage.getItem('username'));
       this.post.likedBy = likes;
       this.user.liked.push(this.post);
@@ -241,7 +243,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
       this.user.bought.push(this.post);
     } else {
       const index = this.post.bought.indexOf(localStorage.getItem('username'));
-      if (index == -1) {
+      if (index === -1) {
         this.post.boughtBy.push(localStorage.getItem('username'));
         this.user.bought.push(this.post);
       }
@@ -272,6 +274,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     this.user.posts = posts;
     this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
     this.http.delete(environment.uploadPostUrl + this.postId, this.httpOptions).subscribe();
+    this.router.navigateByUrl('/posted');
   }
 
 }

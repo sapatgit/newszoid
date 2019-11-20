@@ -31,7 +31,7 @@ export class RecommendationComponent implements OnInit {
       + localStorage.getItem('username'), httpOptions).subscribe(
         (data) => {
           this.posts = data;
-        this.getData({ pageIndex: this.page, pageSize: this.size });
+          this.getData({ pageIndex: this.page, pageSize: this.size });
 
         }/*, (error) => {
         this.router.navigateByUrl('/404');
@@ -42,7 +42,7 @@ export class RecommendationComponent implements OnInit {
       + localStorage.getItem('username'), httpOptions).subscribe(
         (data) => {
           this.postByAge = data;
-        this.getDataAge({ pageIndex: this.page, pageSize: this.size });
+          this.getDataAge({ pageIndex: this.page, pageSize: this.size });
 
         }/*, (error) => {
         this.router.navigateByUrl('/404');
@@ -59,9 +59,9 @@ export class RecommendationComponent implements OnInit {
 
   }
   getData(obj) {
-    let index = 0,
-      startingIndex = obj.pageIndex * obj.pageSize,
-      endingIndex = startingIndex + obj.pageSize;
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
 
     this.data = this.posts.filter(() => {
       index++;
@@ -70,9 +70,9 @@ export class RecommendationComponent implements OnInit {
   }
 
   getDataAge(obj) {
-    let index = 0,
-      startingIndex = obj.pageIndex * obj.pageSize,
-      endingIndex = startingIndex + obj.pageSize;
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
 
     this.dataAge = this.postByAge.filter(() => {
       index++;

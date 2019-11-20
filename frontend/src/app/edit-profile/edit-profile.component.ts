@@ -70,9 +70,9 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
 
     console.log(localStorage.getItem('jwt'));
-    let obj = this.userRegistration.checkToken(JSON.stringify(localStorage.getItem('jwt')));
+    const obj = this.userRegistration.checkToken(JSON.stringify(localStorage.getItem('jwt')));
     console.log('sur ' + obj);
-    let username = obj.sub;
+    const username = obj.sub;
     console.log(username);
     this.userRegistration.getUser(username).subscribe((data) => {
       this.userData = data;
@@ -86,13 +86,13 @@ export class EditProfileComponent implements OnInit {
     const emailregex: RegExp = /[^@]+@[^\.]+\..+/;
 
     this.firstFormGroup = this.formBuilder.group({
-      'email': ['', [Validators.required, Validators.pattern(emailregex)], this.checkInUseEmail]
+      email: ['', [Validators.required, Validators.pattern(emailregex)], this.checkInUseEmail]
     });
 
     this.secondFormGroup = this.formBuilder.group({
-      'name': ['', Validators.required],
-      'date': ['', Validators.required],
-      'validate': ''
+      name: ['', Validators.required],
+      date: ['', Validators.required],
+      validate: ''
     });
     this.thirdFormGroup = this.formBuilder.group({
 
@@ -121,7 +121,7 @@ export class EditProfileComponent implements OnInit {
   setChangeValidate() {
     this.firstFormGroup.get('validate').valueChanges.subscribe(
       (validate) => {
-        if (validate == '1') {
+        if (validate === '1') {
           this.firstFormGroup.get('name').setValidators([Validators.required, Validators.minLength(3)]);
           this.titleAlert = 'You need to specify at least 3 characters';
         } else {
@@ -133,17 +133,17 @@ export class EditProfileComponent implements OnInit {
   }
 
   get name() {
-    return this.firstFormGroup.get('name') as FormControl
+    return this.firstFormGroup.get('name') as FormControl;
   }
 
 
 
   checkInUseEmail(control) {
     // mimic http database access
-    let db = ['sdfesfe'];
+    const db = ['sdfesfe'];
     return new Observable(observer => {
       setTimeout(() => {
-        let result = (db.indexOf(control.value) !== -1) ? { 'alreadyInUse': true } : null;
+        const result = (db.indexOf(control.value) !== -1) ? { alreadyInUse: true } : null;
         observer.next(result);
         observer.complete();
       }, 1000);
@@ -184,16 +184,16 @@ export class EditProfileComponent implements OnInit {
 
     // dateOfBirth = this.datePipe.transform(dateOfBirth, "yyyy-MM-dd");
     this.userObject = {
-      "name": name,
-      "username": userName,
-      "email": email,
-      "dateOfBirth": this.userData.dateOfBirth,
-      "newsPreferences": selectedOptions,
-      "posts": this.userData.posts,
-      "liked": this.userData.liked,
-      "watched": this.userData.watched,
-      "flagged": this.userData.flagged,
-      "bought": this.userData.bought
+      name,
+      username: userName,
+      email,
+      dateOfBirth: this.userData.dateOfBirth,
+      newsPreferences: selectedOptions,
+      posts: this.userData.posts,
+      liked: this.userData.liked,
+      watched: this.userData.watched,
+      flagged: this.userData.flagged,
+      bought: this.userData.bought
     };
     console.log(this.userObject);
 
@@ -209,10 +209,11 @@ export class EditProfileComponent implements OnInit {
   selected(category1) {
     console.log(this.onlyNewsPreferences);
     console.log(category1);
-    if (this.onlyNewsPreferences == null) return false;
-    if (this.onlyNewsPreferences.indexOf(category1) != -1)
+    if (this.onlyNewsPreferences == null) { return false; }
+    if (this.onlyNewsPreferences.indexOf(category1) !== -1) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 }

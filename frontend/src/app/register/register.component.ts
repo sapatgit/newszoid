@@ -221,7 +221,7 @@ export class RegisterComponent implements OnInit {
   }
 
   toggleOffer(selectedOption: any): void {
-    let index = this.selectedOptions.indexOf(selectedOption);
+    const index = this.selectedOptions.indexOf(selectedOption);
 
     if (index >= 0) {
       this.selectedOptions.splice(index, 1);
