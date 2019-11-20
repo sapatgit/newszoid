@@ -8,12 +8,12 @@ import {RegisterService} from '../services/register.service';
 export class ViewProfileComponent implements OnInit {
 
   constructor(private userRegistration: RegisterService) { }
-  userData: any;
+  userData = {};
   ngOnInit() {
     console.log(localStorage.getItem('jwt'));
-    const obj = this.userRegistration.checkToken(JSON.stringify(localStorage.getItem('jwt')));
+    let obj = this.userRegistration.checkToken(JSON.stringify(localStorage.getItem('jwt')));
     console.log('sur ' + obj);
-    const username = obj.sub;
+    let username = obj.sub;
     console.log(username);
     this.userRegistration.getUser(username).subscribe((data) => {
       this.userData = data;

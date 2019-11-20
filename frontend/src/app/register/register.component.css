@@ -11,9 +11,10 @@
 .container{
  width:100%;
  margin: auto;
+ text-align: center;
 }
 .form-element{
-  width : 50%;
+  width : 40%;
 }
 
 .mat-icon {

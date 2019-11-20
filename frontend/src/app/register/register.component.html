@@ -93,7 +93,7 @@
   </mat-card-content>
   <mat-card-content>
     <ng-template #normalsize>
-      <mat-horizontal-stepper linear #stepper class="container">
+      <mat-horizontal-stepper  labelPosition = "bottom" linear #stepper class="container">
         <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup" >
                   <ng-template matStepLabel>Necessary details</ng-template>
@@ -146,7 +146,7 @@
                     </mat-form-field>
                   </div>
                   <div>
-                    <mat-form-field>
+                    <mat-form-field class = "form-element">
                       <input matInput [matDatepicker]="picker" placeholder="When were you born?" formControlName="date"
                              #date [max]="maxDate">
                       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -188,7 +188,7 @@
             </section>
             <!-- {{selectedOptions | json}} -->
             <br>
-            <div style="padding-top: 10px;">
+            <div style="padding-top: 10px; margin-left: 30%;">
               <button mat-button matStepperPrevious class="form-button">Back</button>
               <button mat-raised-button color="primary" class="form-button" type="submit" matStepperNext
                 (click)=register(name.value,username.value,email.value,date.value,password.value,selectedOptions)>
