@@ -68,7 +68,6 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
             if(username != null) {
 
-                //List<String> authorities = (List<String>) claims.get("authorities");
                 List<String> authorities = (List<String>) claims.get("authorities");
 
                 // 5. Create auth object
@@ -77,8 +76,6 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
                         username, null, authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
 
-                //UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                //       username, null, new ArrayList<>());
                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 // 6. Authenticate the user
