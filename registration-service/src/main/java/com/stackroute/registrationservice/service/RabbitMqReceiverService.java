@@ -30,6 +30,7 @@ public class RabbitMqReceiverService {
                     .title(postDTO.getTitle())
                     .videoUrl(postDTO.getVideoUrl())
                     .location(postDTO.getLocation())
+                    .fullLocation(postDTO.getFullLocation())
                     .tags(postDTO.getTags())
                     .timestamp(postDTO.getTimestamp())
                     .category(postDTO.getCategory())

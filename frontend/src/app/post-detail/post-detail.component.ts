@@ -28,6 +28,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   isOwner: boolean;
   user: any;
   post1: any;
+  loc: string;
 
   httpOptions = {
     headers: new HttpHeaders(
@@ -55,6 +56,12 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     this.http.get(environment.uploadPostUrl + this.postId, this.httpOptions).subscribe(
       (data) => {
         this.post = data;
+        // console.log(this.post.fullLocation);
+        if (this.post.fullLocation !== null) {
+          const arr = this.post.fullLocation.split(',');
+          this.loc = arr[arr.length - 4];
+          this.loc = this.loc.trim();
+        }
         if (this.post.postedBy === localStorage.getItem('username')) {
           this.isOwner = true;
         } else {

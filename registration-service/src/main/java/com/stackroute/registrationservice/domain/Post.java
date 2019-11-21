@@ -21,6 +21,7 @@ public class Post {
     private String videoUrl;
     private Date timestamp;
     private String location;
+    private String fullLocation;
     private List<String> tags;
     private String category;
 }
