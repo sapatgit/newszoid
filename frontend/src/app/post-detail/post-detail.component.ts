@@ -208,6 +208,7 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
   }
 
   watch() {
+    console.log("video logged")
     if (this.views === 0) {
       const view: string[] = new Array();
       view.push(localStorage.getItem('username'));
@@ -283,24 +284,6 @@ export class PostDetailComponent implements OnInit, AfterViewInit {
     this.http.put(environment.registerUrl + '/' + localStorage.getItem('username'), this.user, this.httpOptions).subscribe();
     this.http.delete(environment.uploadPostUrl + this.postId, this.httpOptions).subscribe();
     this.router.navigateByUrl('/posted');
-  }
-
-  wakeMe(post) {
-    console.log(JSON.parse(post.location).geometry);
-    try {
-      // JSON.parse(post.location).geometry;
-      console.log('aaaa');
-
-      this.post1 = JSON.parse(post.location);
-      console.log(this.post1);
-
-      console.log(this.post1.geometry);
-      return true;
-    } catch (err) {
-    console.log('bbbb');
-
-    return false; }
-
   }
 
 }

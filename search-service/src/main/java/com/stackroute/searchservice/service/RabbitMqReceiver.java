@@ -38,6 +38,14 @@ public class RabbitMqReceiver {
     public void receiveMessage(String message) {
         try {
             PostDTO postDTO = new ObjectMapper().readValue(message, PostDTO.class);
+            String loc;
+            if(postDTO.getFullLocation() != null) {
+                String fullLoc = postDTO.getFullLocation();
+                String locs[] = fullLoc.split(",");
+                loc = locs[locs.length - 4].trim();
+            } else {
+                loc = postDTO.getLocation();
+            }
             Post post = Post.builder()
                             .id(postDTO.getId())
                             .title(postDTO.getTitle())
@@ -51,7 +59,7 @@ public class RabbitMqReceiver {
                             .boughtBy(postDTO.getBoughtBy())
                             .build();
             try {
-                Location location = locationService.getLocation(postDTO.getLocation());
+                Location location = locationService.getLocation(loc);
                 List<Post> posts = location.getPosts();
                 Iterator itr = posts.iterator();
                 while(itr.hasNext()) {
@@ -67,7 +75,7 @@ public class RabbitMqReceiver {
                 List<Post> posts = new ArrayList<Post>();
                 posts.add(post);
                 Location location = Location.builder()
-                                            .location(postDTO.getLocation())
+                                            .location(loc)
                                             .posts(posts)
                                             .build();
                 try {
