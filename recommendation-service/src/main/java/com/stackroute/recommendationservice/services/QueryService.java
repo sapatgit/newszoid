@@ -89,12 +89,4 @@ public class QueryService {
     public void removeNewsPrefRel(String userName) {
         userRepository.deleteNewsPrefRel(userName);
     }
-
-    public Collection<Post> byLocation(String name) {
-        return newsRepository.byLocation(name);
-    }
-
-    public Collection<Post> byAgeRange(String userName) {
-        return newsRepository.byAgeRange(userName);
-    }
 }

@@ -30,23 +30,22 @@ public class RecommendationController {
 	@GetMapping("/recommend/{id}")
 	public List<PostResp> recommend(@PathVariable(value = "id") String userId) throws ExecutionException, InterruptedException {
 		Collection<Post> posts = recommendationService.recommend(userId);
-		List<PostResp> resp= new ArrayList<>();
-		for(Post post: posts) {
-			PostResp postResp = new PostResp(post.getVideoID(),
-					post.getTitle(),
-					post.getVideoUrl(),
-					post.getTags(),
-					post.getLocation(),
-					post.getSubCategory(),
-					post.getTimestamp());
-			resp.add(postResp);
-		}
-		return resp;
+		return generateResp(posts);
 	}
 
 	@GetMapping("/recommend/ageGroup/{id}")
-	public List<PostResp> recommendByAgeGroup(@PathVariable(value = "id") String userId) throws ExecutionException, InterruptedException {
+	public List<PostResp> recommendByAgeGroup(@PathVariable(value = "id") String userId) {
 		Collection<Post> posts = recommendationService.byAgeGroup(userId);
+		return generateResp(posts);
+	}
+
+	@GetMapping("/recommend/newsPreference/{id}")
+	public List<PostResp> recommendByPreference(@PathVariable(value = "id") String userId) {
+		Collection<Post> posts = recommendationService.byPreferences(userId);
+		return generateResp(posts);
+	}
+
+	private List<PostResp> generateResp(Collection<Post> posts) {
 		List<PostResp> resp= new ArrayList<>();
 		for(Post post: posts) {
 			PostResp postResp = new PostResp(post.getVideoID(),

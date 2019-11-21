@@ -99,4 +99,8 @@ public class RecommendationService {
 		return newsRepository.byAgeRange(userName);
 	}
 
+	@Transactional(readOnly = true)
+	public Collection<Post> byPreferences(String userName) {
+		return newsRepository.byPreferences(userName);
+	}
 }

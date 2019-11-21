@@ -70,6 +70,15 @@ public interface NewsRepository extends Neo4jRepository<Post, Long> {
 			"order by count(r) desc")
 	Collection<Post> byAgeRange(@Param("userName") String userName);
 
+	@Query("MATCH (user:User)-[:VIEWED]->(n:Post) where user.username={userName} WITH collect(n) as viewedNews\n" +
+			"MATCH (user:User)-[:PREFERENCES]->(l:SubCategory) where user.username={userName}\n" +
+			"MATCH (recommend:Post)-[:BelongsTo]->(l)\n" +
+			"where not recommend in viewedNews\n" +
+			"OPTIONAL MATCH ()-[r:VIEWED]->(recommend)\n" +
+			"return recommend, count(r)\n" +
+			"order by count(r) desc")
+	Collection<Post> byPreferences(@Param("userName") String userName);
+
 	@Query("match(:User)-[r:LIKED]->(p:Post) where p.videoID={videoId}  delete r")
 	void deleteLikedRel(@Param("videoId") Long videoId);
 
@@ -77,4 +86,6 @@ public interface NewsRepository extends Neo4jRepository<Post, Long> {
 			"MATCH (n:Post) where n.videoID={videoId}\n" +
 			"MERGE (n)-[:VIEWED_BY_AGE_GROUP{"+"user:{userName}"+"}]->(a)")
 	void createViewedByAgeRel(@Param("videoId") Long videoId, @Param("ageGroup") int ageGroup, @Param("userName") String userName);
+
+
 }
