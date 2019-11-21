@@ -1,23 +1,25 @@
-<h2>
-  <mat-icon aria-hidden="false" aria-label="main menu" class="button-icon">movie_creation</mat-icon>
-  Your Posts ({{posts?.length}})
-</h2>
-<mat-divider></mat-divider>
-<!-- <div fxLayout="row wrap" fxLayout.xs="column" fxLayout.md="row wrap" fxLayout.sm="row wrap">
-    <section *ngFor="let post of posts"  fxFlex="30%"
-        fxFlex.md="33%" fxFlex.sm="50%" fxLayoutAlign="space-between" [fxFlex.gt-sm]=30>
-        <app-post [post]="post"></app-post>
-    </section>
-</div> -->
+<div *ngIf="posts?.length>0;else backupImg">
+  <h2>
+    <mat-icon aria-hidden="false" aria-label="main menu" class="button-icon">movie_creation</mat-icon>
+    Your Posts ({{posts?.length}})
+  </h2>
+  <mat-divider></mat-divider>
 
-<mat-grid-list #grid [cols]="breakpoint" (window:resize)="onResize($event)" >
+  <mat-grid-list #grid [cols]="breakpoint" (window:resize)="onResize($event)">
     <section *ngFor="let post of posts">
-    <mat-grid-tile>
-      <app-post [post]="post"></app-post>
-    </mat-grid-tile>
-   </section>
-</mat-grid-list>
+      <mat-grid-tile>
+        <app-post [post]="post"></app-post>
+      </mat-grid-tile>
+    </section>
+  </mat-grid-list>
 
-<mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getData($event)"
-style="color: #673ab7;">
-</mat-paginator>
+  <mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getData($event)"
+    style="color: #673ab7;">
+  </mat-paginator>
+</div>
+
+<ng-template #backupImg>
+ <!-- <img src="../../assets/Entertainment.jpg"> -->
+ <iframe src="https://giphy.com/embed/l0HlOBZcl7sbV6LnO" width="480" height="347" 
+ frameBorder="0" class="giphy-embed" allowFullScreen style="margin: auto;"></iframe>
+</ng-template>
