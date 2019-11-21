@@ -48,12 +48,14 @@ public class RecommendationController {
 	private List<PostResp> generateResp(Collection<Post> posts) {
 		List<PostResp> resp= new ArrayList<>();
 		for(Post post: posts) {
-			PostResp postResp = new PostResp(post.getVideoID(),
+			PostResp postResp = new PostResp(
+			        post.getVideoID(),
 					post.getTitle(),
 					post.getVideoUrl(),
 					post.getTags(),
-					post.getLocation(),
-					post.getSubCategory(),
+                    post.getLocation().getName(),
+					post.getSubCategory().getName(),
+					post.getPostedBy(),
 					post.getTimestamp());
 			resp.add(postResp);
 		}
