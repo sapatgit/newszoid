@@ -18,18 +18,19 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { CompanyRegisterStepperComponent } from './company-register-stepper/company-register-stepper.component';
 import { FooterComponent } from './footer/footer.component';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/trending', pathMatch : 'full'},
   {path: 'register', component: RegisterComponent},
   {path: 'trending', component: TrendingComponent},
-  {path: 'activities', component: ActivitiesComponent},
+  {path: 'activities', component: ActivitiesComponent, canActivate: [AuthGuard]},
   {path: 'recommended', component: RecommendationComponent},
-  {path: 'posted', component: PostedComponent},
+  {path: 'posted', component: PostedComponent, canActivate: [AuthGuard]},
   {path: 'category/:categoryName', component: CategoryComponent},
-  {path: 'editProfile', component: EditProfileComponent},
-  {path: 'viewProfile', component: ViewProfileComponent},
+  {path: 'editProfile', component: EditProfileComponent, canActivate: [AuthGuard]},
+  {path: 'viewProfile', component: ViewProfileComponent, canActivate: [AuthGuard]},
   {path: 'search/:query', component: SearchComponent},
   {path: 'graph', component: GraphComponent},
   {path: '404', component: NotfoundComponent},
