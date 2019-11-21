@@ -11,7 +11,7 @@ export class LikedComponent implements OnInit {
   posts: any;
   breakpoint: number;
   page = 0;
-  size = 9;
+  size = 6;
   data: any;
 
   constructor(private posted: PostedService) { }

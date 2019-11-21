@@ -3,30 +3,38 @@
   <mat-video #video [preload]="true" [autoplay]="true" [overlay]="true" color="primary" spinner="spin"
     src="{{post?.videoUrl}}" [download]="false">
   </mat-video>
-  
+
 
   <!-- <video #video width="320" height="240" controls>
     <source src="{{post?.videoUrl}}" type="video/mp4">
   </video> -->
   <br>
   <mat-card-title>{{post?.title}}</mat-card-title>
-  <div class="info">
+  <div class="info" style="flex-flow: wrap">
     <mat-card-subtitle style="display: flex; align-items: center">
       <!-- <mat-icon>accessibility_new</mat-icon>
       {{post?.postedBy}} -->
-      <button mat-button matTooltip="posted by">
+      <button mat-button matTooltip="posted by" style="padding: 0">
         <mat-icon>accessibility_new</mat-icon> {{post?.postedBy}}
       </button>
-    </mat-card-subtitle>
-    <mat-card-subtitle style="display: flex; align-items: center">
 
-      <button mat-button matTooltip="viewd by">
-        <mat-icon>remove_red_eye</mat-icon> {{views}} |
-      </button> <button mat-button matTooltip="posted on">
-        <mat-icon>access_time</mat-icon> {{post?.timestamp | date:'mediumDate'}} |
-      </button> <button mat-button matTooltip="category">
-        <mat-icon>category</mat-icon>{{post?.category}} |
+    </mat-card-subtitle>
+    <mat-card-subtitle style="display: flex; align-items: center;">
+
+      <button mat-button matTooltip="posted on" style="padding: 0">
+        <mat-icon>access_time</mat-icon> {{post?.timestamp | date:'mediumDate'}} 
       </button>
+    </mat-card-subtitle>
+    <mat-card-subtitle style="display: flex; align-items: center;">
+
+      <button mat-button matTooltip="category" style="padding: 0">
+        <mat-icon>category</mat-icon>{{post?.category}} 
+      </button>
+
+    </mat-card-subtitle>
+
+    <mat-card-subtitle style="display: flex; align-items: center;">
+
       <div *ngIf="post?.fullLocation else notJson">
         <button mat-button matTooltip="{{post?.fullLocation}}">
           <mat-icon>my_location</mat-icon>{{loc}}
@@ -43,12 +51,16 @@
     {{likes}}
     <mat-icon (click)="flag()" class="icon-disabled" [ngClass]="{'icon-enabled': getIsFlagged()}">flag</mat-icon>
     {{flags}}
+
+    <button mat-button matTooltip="viewed by" style="padding: 0">
+      <mat-icon>remove_red_eye</mat-icon> {{views}}
+    </button>
     <div *ngIf="isOwner">
       <button mat-icon-button (click)="edit()">Edit</button>
       <button mat-icon-button (click)="delete()">Delete</button>
     </div>
     <div *ngIf="user?.isSub">
-      <button mat-raised-button (click)="download(post.videoUrl)" color=primary>Download video</button>
+      <button mat-raised-button (click)="download(post.videoUrl)" color=primary>Download</button>
     </div>
   </mat-card-actions>
 </mat-card>

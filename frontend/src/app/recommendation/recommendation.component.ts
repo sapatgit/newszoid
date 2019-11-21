@@ -14,7 +14,7 @@ export class RecommendationComponent implements OnInit {
   posts: any;
   postByAge: any;
   page = 0;
-  size = 9;
+  size = 6;
   data: any;
   dataAge: any;
   constructor(private http: HttpClient,

@@ -15,7 +15,7 @@ export class TrendingComponent implements OnInit {
   breakpoint: number;
   panelOpenState = false;
   page = 0;
-  size = 9;
+  size = 6;
   data: any;
 
   constructor(private http: HttpClient) { }
@@ -45,9 +45,9 @@ export class TrendingComponent implements OnInit {
   }
 
   getData(obj) {
-    let index = 0,
-      startingIndex = obj.pageIndex * obj.pageSize,
-      endingIndex = startingIndex + obj.pageSize;
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
 
     this.data = this.posts.filter(() => {
       index++;

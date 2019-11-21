@@ -17,3 +17,7 @@
     </mat-grid-tile>
    </section>
 </mat-grid-list>
+
+<mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getData($event)"
+style="color: #673ab7;">
+</mat-paginator>

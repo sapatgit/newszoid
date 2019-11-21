@@ -52,8 +52,17 @@
 
   </ng-template>
 </mat-toolbar>
-<mat-sidenav-container hasBackdrop="false">
+<mat-sidenav-container hasBackdrop="true">
   <mat-sidenav #sideNavBar mode="over" opened="false" class="side-navbar" fixedInViewport="true" fixedTopGap="70">
+
+    <a href="https://newszoid.wtf/app-debug.apk" style="padding-right: 15px; color: black;">
+      <button mat-flat-button class="navbar-button">
+        <mat-icon aria-hidden="false" aria-label="main menu" class="button-icon">android</mat-icon>
+        Our App
+      </button>
+    </a>
+
+
     <button mat-flat-button class="navbar-button" (click)="trending()">
       <mat-icon aria-hidden="false" aria-label="main menu" class="button-icon">local_activity</mat-icon>
       Trending Now
@@ -70,10 +79,10 @@
       <mat-icon aria-hidden="false" aria-label="main menu" class="button-icon">movie_creation</mat-icon>
       Your Posts
     </button>
-    <button mat-flat-button class="navbar-button" (click)="upload()">
+    <!-- <button mat-flat-button class="navbar-button" (click)="upload()">
       <mat-icon aria-hidden="false" aria-label="main menu" class="button-icon">add_to_queue</mat-icon>
       Upload News
-    </button>
+    </button> -->
     <mat-divider></mat-divider>
 
     <section *ngFor="let category of categories">
@@ -98,7 +107,9 @@
     </button>
   </mat-sidenav>
   <mat-divider [vertical]="true"></mat-divider>
-  <mat-sidenav-content class="main-content">
-    <router-outlet></router-outlet>
+  <mat-sidenav-content fxLayout="column" fxFlexFill>
+    <router-outlet class="main-content"></router-outlet>
+    <app-footer fxFlexOffset="auto"></app-footer>
+
   </mat-sidenav-content>
 </mat-sidenav-container>

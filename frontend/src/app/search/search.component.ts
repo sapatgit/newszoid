@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
   query1: string;
   response: any;
   page = 0;
-  size = 9;
+  size = 6;
   data: any;
 
   ngOnInit() {
