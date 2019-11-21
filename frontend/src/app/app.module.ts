@@ -67,6 +67,21 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { FooterComponent } from './footer/footer.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { GoogleMapsModule } from '@angular/google-maps';
+import {AuthGuardService} from './services/auth-guard.service';
+import {AuthService} from './services/auth.service';
+import {JWT_OPTIONS, JwtHelperService, JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
+// @ts-ignore
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: tokenGetter
+  }
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -140,7 +155,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MatPaginatorModule,
     MatButtonToggleModule,
     AngularFontAwesomeModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    JwtModule.forRoot(JWT_Module_Options)
   ],
   entryComponents: [
     LoginComponent,
@@ -149,7 +165,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     BottomSheetNewsZoid,
     FlagPostComponent
   ],
-  providers: [DatePipe, CategoryComponent, GraphComponent],
+  providers: [DatePipe, CategoryComponent, GraphComponent, AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

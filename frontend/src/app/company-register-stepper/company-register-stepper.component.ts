@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-company-register-stepper',
   templateUrl: './company-register-stepper.component.html',
@@ -19,7 +19,7 @@ export class CompanyRegisterStepperComponent implements OnInit {
   thirdFormGroup: FormGroup;
 
   @ViewChild('stepper', { static: false }) stepper: MatStepper;
-  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
 
   private invalidfeedback: string;
@@ -39,6 +39,9 @@ chargeCreditCard(name, pass, num, exp, cvv) {
         let token = response.id;
         console.log(token);
         this.invalidfeedback = '';
+        this.snackBar.open('Registration Successful!', 'close ', {
+          duration: 4000
+        });
         this.router.navigate(['/trending']).then();
 
 
@@ -70,6 +73,9 @@ chargeCreditCard(name, pass, num, exp, cvv) {
       .subscribe(resp => {
 
         console.log('RESP = ', resp);
+        this.snackBar.open('You are now logged in!', 'close ', {
+          duration: 4000
+        });
 
       });
   }
