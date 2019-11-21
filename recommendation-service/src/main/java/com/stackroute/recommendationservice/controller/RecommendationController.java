@@ -53,8 +53,8 @@ public class RecommendationController {
 					post.getTitle(),
 					post.getVideoUrl(),
 					post.getTags(),
-                    post.getLocation().getName(),
-					post.getSubCategory().getName(),
+                    post.getLoc(),
+					post.getSc(),
 					post.getPostedBy(),
 					post.getTimestamp());
 			resp.add(postResp);

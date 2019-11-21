@@ -27,4 +27,6 @@ public class Post {
 	private SubCategory subCategory;
 	private String postedBy;
 	private Date timestamp;
+	private String loc;
+	private String sc;
 }

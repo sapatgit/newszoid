@@ -32,7 +32,9 @@ public class RabbitMqReceiver {
                     .location(new Location(postDTO.getLocation(), null, null))
                     .timestamp(postDTO.getTimestamp())
                     .tags(postDTO.getTags())
+                    .loc(postDTO.getLocation())
                     .postedBy(postDTO.getPostedBy())
+                    .sc(postDTO.getCategory())
                     .build();
             //System.out.println(postDTO.toString());
             logger.debug(postDTO.toString());
