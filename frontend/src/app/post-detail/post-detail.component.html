@@ -13,20 +13,18 @@
       <mat-icon>remove_red_eye</mat-icon> {{views}} |
       <mat-icon>access_time</mat-icon> {{post?.timestamp | date:'mediumDate'}} |
       <mat-icon>category</mat-icon>{{post?.category}} |
-     
-      <!-- <div *ngIf="post && wakeMe(post) else notJson" >
-        
-        <mat-icon>my_location</mat-icon>{{post1}}
-        
+
+       <div *ngIf="post?.fullLocation else notJson" >
+         <button mat-button matTooltip="{{post?.fullLocation}}">
+           <mat-icon>my_location</mat-icon>{{loc}}
+         </button>
       </div>
-
-
       <ng-template #notJson>
         <mat-icon>my_location</mat-icon>{{post?.location}}
       </ng-template>
 
-      <button (click)="wakeMe(post)">wake111</button> -->
-      <mat-icon>my_location</mat-icon>{{post?.location}}
+<!--      <button (click)="wakeMe(post)">wake111</button> -->
+<!--      <mat-icon>my_location</mat-icon>{{post?.location}}-->
 
 
     </mat-card-subtitle>

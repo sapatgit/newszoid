@@ -106,41 +106,5 @@ public class PostServiceImpl implements PostService{
 
         return trendingPosts;
     }
-
-
-
-
-//    @Override
-//    public List<Post> getTrendingPostsByCategory(String category) throws PostNotFoundException {
-//
-//        List<Post> trendingPostsByCategory=getPostsByCategory(category);
-//        trendingPostsByCategory=postService.getTrendingPosts(trendingPostsByCategory);
-//
-
-
-
-      /*  System.out.println();
-       Post post=new Post();
-       List<Post> trendingPostsByCategory=new ArrayList<>();
-       List<Post> postsByCategory=getPostsByCategory(post.getCategory());
-        LocalDate localDate = LocalDate.now();
-        String str=localDate.toString();
-        //  System.out.println("today"+str);
-      //  List<Post> trendingPosts=new ArrayList<Post>();
-        for(Post post1:postsByCategory){
-            String string=post1.getTimestamp()
-                    .toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate()
-                    .toString();
-          //  System.out.println("postdate:"+string);
-            if(string.equals(str)){
-                trendingPostsByCategory.add(post1);
-            }
-        }
-        Comparator c = Collections.reverseOrder(new SortByViews());
-        Collections.sort(trendingPostsByCategory, c);
-      return trendingPostsByCategory;*/
-
 }
 
