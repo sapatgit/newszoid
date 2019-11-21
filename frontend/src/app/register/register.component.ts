@@ -77,7 +77,7 @@ export class RegisterComponent implements OnInit {
     return this.firstFormGroup.get('name') as FormControl;
   }
   isMobile() {
-    return (window.innerWidth <= 450);
+    return (window.innerWidth <= 1024);
   }
 
   ngOnInit() {

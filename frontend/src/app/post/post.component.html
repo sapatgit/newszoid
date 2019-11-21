@@ -1,9 +1,10 @@
 <mat-card class="post" (click)="postDetail()">
   <mat-card-content>
-   
+    <div (contextmenu) = "onRightClick($event)">
     <video width="320" height="240" controls>
         <source src="{{post?.videoUrl}}" type="video/mp4">
       </video> 
+    </div>
     <br>
     <mat-card-title class="ellipse">{{post?.title}}</mat-card-title>
     <!-- <mat-card-subtitle>

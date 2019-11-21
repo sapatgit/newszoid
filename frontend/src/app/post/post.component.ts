@@ -13,6 +13,7 @@ export class PostComponent implements OnInit {
   @Input() post: any;
   views: number;
   plays: boolean;
+  RightClicks = 0;
   constructor(private users: RegisterService,
               private http: HttpClient,
               private router: Router) {
@@ -26,7 +27,10 @@ export class PostComponent implements OnInit {
       this.views = this.post.watchedBy.length;
     }
   }
-
+  onRightClick() {
+    this.RightClicks++;
+    return false;
+  }
   postDetail() {
     this.router.navigateByUrl('/postDetail/' + this.post.id);
   }

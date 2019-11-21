@@ -8,9 +8,9 @@
                   <ng-template matStepLabel>Necessary details</ng-template>
                   <div>
                         <mat-form-field appearance="legacy">
-                                <mat-label>Name</mat-label>
+                                <mat-label>Organisation Name</mat-label>
                                 <input matInput placeholder="John Doe" formControlName = "name" required #name>
-                                <mat-hint>Enter your name</mat-hint>
+                                <mat-hint>Enter your organisation name</mat-hint>
                               </mat-form-field>
                   </div>
                   <div>
@@ -43,11 +43,11 @@
                           </div>
                      </form>
                      </mat-step>
-                     <mat-step [stepControl]="thirdFormGroup">
-                            <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start" class= "center">
+                     <mat-step [stepControl]="thirdFormGroup" class = "center1">
+                            <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start" class= "center1">
                               <ng-template matStepLabel>Payment Details</ng-template> 
                               <div>
-                              <mat-form-field appearance="legacy" class = "center">
+                              <mat-form-field appearance="legacy">
                                     <mat-label>Card Number</mat-label>
                                     <input #num matInput placeholder="1111111111111111" required>
                                     <mat-hint>Enter a valid 16 digit card number</mat-hint>
@@ -87,9 +87,9 @@
                                                                   <ng-template matStepLabel>Necessary details</ng-template>
                                                                   <div>
                                                                         <mat-form-field appearance="legacy">
-                                                                                <mat-label>Name</mat-label>
+                                                                                <mat-label>Organisation Name</mat-label>
                                                                                 <input matInput placeholder="John Doe" formControlName = "name" required #name>
-                                                                                <mat-hint>Enter your name</mat-hint>
+                                                                                <mat-hint>Enter your organisation name</mat-hint>
                                                                               </mat-form-field>
                                                                   </div>
                                                                   <div>
@@ -154,7 +154,7 @@
                                                                                   <div>
                                                                                         <button mat-button matStepperPrevious class="form-button">Back</button>
                                                                                         <button mat-raised-button type="submit"
-                                                                                        (click)="chargeCreditCard(name.value,password.value,num.value,exp.value,cvv.value)" color="primary" style = "padding-right: 10px;">Go To Payment
+                                                                                        (click)="chargeCreditCard(name.value,password.value,num.value,exp.value,cvv.value)" color="primary" style = "padding-right: 10px;">Subscribe
                                                                                         </button>
                                                                                         <button mat-raised-button color="warn" class="form-button" (click)="stepper.reset()" style = "padding-left: 20px">Reset</button>
                                                                                       </div>
