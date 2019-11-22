@@ -1,9 +1,10 @@
 <mat-card class="post">
 
+  <div style="width:80%; height:300px; margin:auto">
   <mat-video #video [preload]="true" [autoplay]="true" [overlay]="true" color="primary" spinner="spin"
     src="{{post?.videoUrl}}" [download]="false">
   </mat-video>
-
+  </div>
 
   <!-- <video #video width="320" height="240" controls>
     <source src="{{post?.videoUrl}}" type="video/mp4">

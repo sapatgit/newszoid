@@ -1,3 +1,5 @@
+<div *ngIf="posts?.length>0;else backupImg">
+
 <mat-grid-list #grid [cols]="breakpoint" (window:resize)="onResize($event)" >
   <section *ngFor="let post of data">
     <mat-grid-tile>
@@ -9,4 +11,16 @@
 <mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getData($event)"
 style="color: #673ab7;">
 </mat-paginator>
+</div>
 
+<ng-template #backupImg>
+    <h2>
+        Oops, you haven't liked anything yet!
+      </h2>
+      <mat-divider></mat-divider>
+ <!-- <img src="../../assets/Entertainment.jpg"> -->
+ <div style="width: 50%;height: 305px; margin:auto !important;">
+ <!-- <mat-video [loop]="true" [autoplay]="true" [spinner]="dot" [overlay]="false" src="../../assets/empty.mp4"></mat-video> -->
+ <img src="../../assets/abcd.gif" style="width: 90%; margin: auto !important;height: 295px;">
+</div>
+</ng-template>
