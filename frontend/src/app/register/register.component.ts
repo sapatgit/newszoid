@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { RegisterService } from '../services/register.service';
 import { MatStepper } from '@angular/material';
 import { PrefixNot } from '@angular/compiler';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-register',
@@ -71,7 +73,8 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private datePipe: DatePipe,
               private router: Router,
-              private registration: RegisterService) { }
+              private registration: RegisterService,
+              private snackBar: MatSnackBar) { }
 
   get name() {
     return this.firstFormGroup.get('name') as FormControl;
@@ -210,6 +213,9 @@ export class RegisterComponent implements OnInit {
         () => {
           console.log(this.userObject);
           this.ngOnInit();
+          this.snackBar.open('You are now registered!', 'close ', {
+            duration: 4000
+          });
           this.router.navigateByUrl('/trending');
         }
       );

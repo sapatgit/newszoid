@@ -1,168 +1,177 @@
-<mat-card class="registration-form" style = "text-align: center;">
+<div style="height:100%">
+  <mat-card class="registration-form" style="text-align: center;">
     <mat-card-title class="title">Please Register and Subscribe</mat-card-title>
-    <div class="container">
-    <mat-card-content class="container1" *ngIf="isMobile(); else normalsize">
-      <mat-vertical-stepper linear #stepper class="container">
-        <mat-step [stepControl]="firstFormGroup">
-                <form [formGroup]="firstFormGroup" >
-                  <ng-template matStepLabel>Necessary details</ng-template>
-                  <div>
-                        <mat-form-field appearance="legacy">
-                                <mat-label>Organisation Name</mat-label>
-                                <input matInput placeholder="John Doe" formControlName = "name" required #name>
-                                <mat-hint>Enter your organisation name</mat-hint>
-                              </mat-form-field>
-                  </div>
-                  <div>
-                        <mat-form-field appearance="legacy">
-                                <mat-label>Password</mat-label>
-                                <input #password matInput placeholder="QddfEEqq@123" type="password" formControlName = "password" required>
-                                <mat-hint>Enter your password</mat-hint>
-                              </mat-form-field>
-                  </div>
-                  <br>
-                  <!-- <div>
+    <div class="container" style="height: 100%">
+      <mat-card-content class="container1" *ngIf="isMobile(); else normalsize">
+        <mat-vertical-stepper linear #stepper class="container">
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Necessary details</ng-template>
+              <div>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Organisation Name</mat-label>
+                  <input matInput placeholder="John Doe" formControlName="name" required #name>
+                  <mat-hint>Enter your organisation name</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Password</mat-label>
+                  <input #password matInput placeholder="QddfEEqq@123" type="password" formControlName="password"
+                    required>
+                  <mat-hint>Enter your password</mat-hint>
+                </mat-form-field>
+              </div>
+              <br>
+              <!-- <div>
                   <mat-form-field appearance="legacy">
                         <mat-label>TIN number</mat-label>
                         <input matInput placeholder="Tax payer identification">
                         <mat-hint>Enter your taxpayer id no.</mat-hint>
                       </mat-form-field>
                       </div> -->
-                      <div>
-                            <button mat-raised-button color="primary" matStepperNext>Next</button>
-                          </div>
-                      </form>
-                      </mat-step>
-            <mat-step [stepControl]="secondFormGroup">
-                <form [formGroup]="secondFormGroup" class="container">
-                     <ng-template matStepLabel>Choose Your Subscription Plan</ng-template>
-                     <div>
-                            <app-subscription-page></app-subscription-page>
-                            <button mat-button matStepperPrevious>Back</button>
-                            <!-- <button mat-raised-button color="primary" matStepperNext>Next</button> -->
-                          </div>
-                     </form>
-                     </mat-step>
-                     <mat-step [stepControl]="thirdFormGroup" class = "center1">
-                            <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start" class= "center1">
-                              <ng-template matStepLabel>Payment Details</ng-template> 
-                              <div>
-                              <mat-form-field appearance="legacy">
-                                    <mat-label>Card Number</mat-label>
-                                    <input #num matInput placeholder="1111111111111111" required>
-                                    <mat-hint>Enter a valid 16 digit card number</mat-hint>
-                                  </mat-form-field>        
-                                  </div>
-                                  <div>
-                                        <mat-form-field appearance="legacy">
-                                                <mat-label>Card Expiration</mat-label>
-                                                <input #exp matInput placeholder="99/99" required>
-                                                <mat-hint>Enter the expiration date</mat-hint>
-                                              </mat-form-field>
-                                  </div>
-                                  <div>
-                                        <mat-form-field appearance="legacy">
-                                                <mat-label>CVV</mat-label>
-                                                <input #cvv matInput placeholder="xxx" required>
-                                                <mat-hint>Enter the 3 digits on back of cards</mat-hint>
-                                              </mat-form-field>
-                                  </div>
-                                  <div>
-                                        <button mat-button matStepperPrevious class="form-button">Back</button>
-                                        <button mat-raised-button type="submit"
-                                        (click)="chargeCreditCard(name.value,password.value,num.value,exp.value,cvv.value)" color="primary">Go To Payment
-                                        </button>
-                                        <button mat-raised-button color="warn" class="form-button" (click)="stepper.reset()">Reset</button>
-                                      </div>
-                                  </form>
-                                  </mat-step>
+              <div>
+                <button mat-raised-button color="primary" matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup" class="container">
+              <ng-template matStepLabel>Choose Your Subscription Plan</ng-template>
+              <div>
+                <app-subscription-page></app-subscription-page>
+                <button mat-button matStepperPrevious>Back</button>
+                <!-- <button mat-raised-button color="primary" matStepperNext>Next</button> -->
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="thirdFormGroup" class="center1">
+            <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start"
+              class="center1">
+              <ng-template matStepLabel>Payment Details</ng-template>
+              <div>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Card Number</mat-label>
+                  <input #num matInput placeholder="1111111111111111" required>
+                  <mat-hint>Enter a valid 16 digit card number</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="legacy">
+                  <mat-label>Card Expiration</mat-label>
+                  <input #exp matInput placeholder="99/99" required>
+                  <mat-hint>Enter the expiration date</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="legacy">
+                  <mat-label>CVV</mat-label>
+                  <input #cvv matInput placeholder="xxx" required>
+                  <mat-hint>Enter the 3 digits on back of cards</mat-hint>
+                </mat-form-field>
+              </div>
+              <div>
+                <button mat-button matStepperPrevious class="form-button">Back</button>
+                <button mat-raised-button type="submit"
+                  (click)="chargeCreditCard(name.value,password.value,num.value,exp.value,cvv.value)" color="primary">Go
+                  To Payment
+                </button>
+                <button mat-raised-button color="warn" class="form-button" (click)="stepper.reset()">Reset</button>
+              </div>
+            </form>
+          </mat-step>
 
-                              </mat-vertical-stepper>
-                                    </mat-card-content>
-                                      <mat-card-content>
-                                          <ng-template #normalsize>
-                                                <mat-horizontal-stepper labelPosition = "bottom" linear #stepper class="container">
-                                                        <mat-step [stepControl]="firstFormGroup">
-                                                                <form [formGroup]="firstFormGroup" >
-                                                                  <ng-template matStepLabel>Necessary details</ng-template>
-                                                                  <div>
-                                                                        <mat-form-field appearance="legacy">
-                                                                                <mat-label>Organisation Name</mat-label>
-                                                                                <input matInput placeholder="John Doe" formControlName = "name" required #name>
-                                                                                <mat-hint>Enter your organisation name</mat-hint>
-                                                                              </mat-form-field>
-                                                                  </div>
-                                                                  <div>
-                                                                        <mat-form-field appearance="legacy">
-                                                                                <mat-label>Password</mat-label>
-                                                                                <input #password matInput placeholder="QddfEEqq@123" type="password" formControlName = "password" required>
-                                                                                <mat-hint>Enter your password</mat-hint>
-                                                                              </mat-form-field>
-                                                                  </div>
-                                                                  <div>
-                                                                  <mat-form-field appearance="legacy">
-                                                                        <mat-label>TIN number</mat-label>
-                                                                        <input matInput placeholder="Tax payer identification">
-                                                                        <mat-hint>Enter your taxpayer id no.</mat-hint>
-                                                                      </mat-form-field>
-                                                                      </div>
-                                                                      <br>
-                                                                      <div>
-                                                                            <button mat-raised-button color="primary" matStepperNext>Next</button>
-                                                                          </div>
-                                                                      </form>
-                                                                      </mat-step>
-                                                            <mat-step [stepControl]="secondFormGroup">
-                                                                <form [formGroup]="secondFormGroup" class="container">
-                                                                     <ng-template matStepLabel>Choose Your Subscription Plan</ng-template>
-                                                                     <div>
-                                                                            <app-subscription-page></app-subscription-page>
-                                                                            <button mat-button matStepperPrevious>Back</button>
-                                                                            <!-- <button mat-raised-button color="primary" matStepperNext>Next</button> -->
-                                                                          </div>
-                                                                     </form>
-                                                                     </mat-step>
-                                                                     <mat-step [stepControl]="thirdFormGroup" class = "center">
-                                                                            <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start" class = "center">
-                                                                              <ng-template matStepLabel>Payment Details</ng-template> 
-                                                                                  <div>
-                                                                                  <mat-form-field appearance="legacy">
-                                                                                    <mat-label>Card Number</mat-label>
-                                                                                    <input #num matInput placeholder="1111111111111111" required>
-                                                                                    <mat-hint>Enter a valid 16 digit card number</mat-hint>
-                                                                                  </mat-form-field>        
-                                                                                  </div>
-                                                                                  
-                                                                                  <div>
-                                                                                        <mat-form-field appearance="legacy">
-                                                                                                <mat-label>Card Expiration</mat-label>
-                                                                                                <input #exp matInput placeholder="99/99" required>
-                                                                                                <mat-hint>Enter the expiration date</mat-hint>
-                                                                                              </mat-form-field>
-                                                                                  </div>
-                                                                                 
-                                                                                  <div>
-                                                                                        <mat-form-field appearance="legacy">
-                                                                                                <mat-label>CVV</mat-label>
-                                                                                                <input #cvv matInput placeholder="xxx" required>
-                                                                                                <mat-hint>Enter the 3 digits on back of cards</mat-hint>
-                                                                                              </mat-form-field>
-                                                                                  </div>
-                                                                                  <br>
-                                                                                  <br>
-                                                                                  
-                                                                                  <div>
-                                                                                        <button mat-button matStepperPrevious class="form-button">Back</button>
-                                                                                        <button mat-raised-button type="submit"
-                                                                                        (click)="chargeCreditCard(name.value,password.value,num.value,exp.value,cvv.value)" color="primary" style = "padding-right: 10px;">Subscribe
-                                                                                        </button>
-                                                                                        <button mat-raised-button color="warn" class="form-button" (click)="stepper.reset()" style = "padding-left: 20px">Reset</button>
-                                                                                      </div>
-                                                                                     
-                                                                                  </form>
-                                                                                  </mat-step>
-                                                                                  </mat-horizontal-stepper>
-                                                                      </ng-template>
-                                                                      </mat-card-content>
-                                                                      </div>
-                                                                      </mat-card>
+        </mat-vertical-stepper>
+      </mat-card-content>
+      <mat-card-content>
+        <ng-template #normalsize>
+          <mat-horizontal-stepper labelPosition="bottom" linear #stepper class="container">
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Necessary details</ng-template>
+                <div>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Organisation Name</mat-label>
+                    <input matInput placeholder="John Doe" formControlName="name" required #name>
+                    <mat-hint>Enter your organisation name</mat-hint>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Password</mat-label>
+                    <input #password matInput placeholder="QddfEEqq@123" type="password" formControlName="password"
+                      required>
+                    <mat-hint>Enter your password</mat-hint>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>TIN number</mat-label>
+                    <input matInput placeholder="Tax payer identification">
+                    <mat-hint>Enter your taxpayer id no.</mat-hint>
+                  </mat-form-field>
+                </div>
+                <br>
+                <div>
+                  <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup" class="container">
+                <ng-template matStepLabel>Choose Your Subscription Plan</ng-template>
+                <div>
+                  <app-subscription-page></app-subscription-page>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <!-- <button mat-raised-button color="primary" matStepperNext>Next</button> -->
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="thirdFormGroup" class="center">
+              <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start"
+                class="center">
+                <ng-template matStepLabel>Payment Details</ng-template>
+                <div>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Card Number</mat-label>
+                    <input #num matInput placeholder="1111111111111111" required>
+                    <mat-hint>Enter a valid 16 digit card number</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Card Expiration</mat-label>
+                    <input #exp matInput placeholder="99/99" required>
+                    <mat-hint>Enter the expiration date</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>CVV</mat-label>
+                    <input #cvv matInput placeholder="xxx" required>
+                    <mat-hint>Enter the 3 digits on back of cards</mat-hint>
+                  </mat-form-field>
+                </div>
+                <br>
+                <br>
+
+                <div>
+                  <button mat-button matStepperPrevious class="form-button">Back</button>
+                  <button mat-raised-button type="submit"
+                    (click)="chargeCreditCard(name.value,password.value,num.value,exp.value,cvv.value)" color="primary"
+                    style="padding-right: 10px;">Subscribe
+                  </button>
+                  <button mat-raised-button color="warn" class="form-button" (click)="stepper.reset()"
+                    style="padding-left: 20px">Reset</button>
+                </div>
+
+              </form>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </ng-template>
+      </mat-card-content>
+    </div>
+  </mat-card>
+</div>

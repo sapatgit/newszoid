@@ -1,3 +1,4 @@
+<div style="height: 100%">
 <mat-card class="registration-form">
   <mat-card-title class="title">Please register yourself</mat-card-title>
   <mat-card-content class="container1" *ngIf="isMobile(); else normalsize">
@@ -173,14 +174,7 @@
           <form [formGroup]="thirdFormGroup" class="container" fxLayout="column" fxLayoutAlign="start start"
             style="min-height: min-content;">
             <ng-template matStepLabel>Your Preferences</ng-template>
-            <!-- <mat-selection-list #list [(ngModel)]="selectedOptions" [ngModelOptions]="{standalone: true}"
-                                      (ngModelChange)="onNgModelChange($event)">
-                    <mat-list-option  [value]="category.name" *ngFor="let category of categories">
-                      <mat-icon aria-hidden="false" matListAvatar>{{category.icon}}</mat-icon>
-                      {{category.name}}
-                    </mat-list-option>
-                  </mat-selection-list> -->
-
+           
             <section style="width:70%;margin: auto">
               <mat-chip-list [(ngModel)]="selectedOptions" multiple style="margin: auto" [ngModelOptions]="{standalone: true}"
               (ngModelChange)="onNgModelChange($event)">
@@ -211,3 +205,4 @@
     </ng-template>
   </mat-card-content>
 </mat-card>
+</div>

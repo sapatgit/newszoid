@@ -13,15 +13,18 @@
     flex: 1 1 auto;
     
 }
+
 .footer{
-position: sticky;
-position: -webkit-sticky;
+  position: sticky;
+position: -webkit-sticky !important;
 width: 100%;
 margin-bottom: 0px;
 padding-bottom: 0;
 height: 50;
 bottom: 0;
 }
+
+
 .copyright{
   font-size: 15px;
 }
