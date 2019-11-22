@@ -10,7 +10,46 @@
 <mat-tab-group>
   <mat-tab>
     <ng-template mat-tab-label>
-      <p>By Activities</p>
+      <p>By Preferences</p>
+    </ng-template>
+
+    <mat-grid-list #grid1 [cols]="breakpoint" (window:resize)="onResize($event)">
+      <section *ngFor="let post of dataPref">
+        <mat-grid-tile>
+          <app-post [post]="post"></app-post>
+        </mat-grid-tile>
+      </section>
+
+    </mat-grid-list>
+    <mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getDataPref($event)"
+      style="color: #673ab7;">
+    </mat-paginator>
+  </mat-tab>
+
+
+
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <p>By Profile</p>
+    </ng-template>
+
+    <mat-grid-list #grid1 [cols]="breakpoint" (window:resize)="onResize($event)">
+      <section *ngFor="let post of dataAge">
+        <mat-grid-tile>
+          <app-post [post]="post"></app-post>
+        </mat-grid-tile>
+      </section>
+
+    </mat-grid-list>
+    <mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getDataAge($event)"
+      style="color: #673ab7;">
+    </mat-paginator>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <p>By Activity</p>
     </ng-template>
 
     <mat-grid-list #grid [cols]="breakpoint" (window:resize)="onResize($event)">
@@ -25,23 +64,4 @@
     </mat-paginator>
   </mat-tab>
 
-
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      <p>By Age Group</p>
-    </ng-template>
-
-    <mat-grid-list #grid1 [cols]="breakpoint" (window:resize)="onResize($event)">
-      <section *ngFor="let post of dataAge">
-        <mat-grid-tile>
-          <app-post [post]="post"></app-post>
-        </mat-grid-tile>
-      </section>
-
-    </mat-grid-list>
-    <mat-paginator [length]="posts?.length" [pageSize]="size" [pageIndex]="page" (page)="getData($event)"
-      style="color: #673ab7;">
-    </mat-paginator>
-  </mat-tab>
 </mat-tab-group>

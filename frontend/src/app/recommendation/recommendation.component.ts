@@ -17,6 +17,8 @@ export class RecommendationComponent implements OnInit {
   size = 6;
   data: any;
   dataAge: any;
+  dataPref: any;
+  postByPref: any;
   constructor(private http: HttpClient,
               private router: Router) { }
 
@@ -48,6 +50,16 @@ export class RecommendationComponent implements OnInit {
         this.router.navigateByUrl('/404');
       }*/
       );
+    this.http.get('https://newszoid.stackroute.io:8443/recommendation-service/recommend/newsPreference/'
+    + localStorage.getItem('username'), httpOptions).subscribe(
+      (data) => {
+        this.postByPref = data;
+        this.getDataPref({ pageIndex: this.page, pageSize: this.size });
+
+      }/*, (error) => {
+      this.router.navigateByUrl('/404');
+    }*/
+    );
     this.breakpoint = (window.innerWidth <= 777) ? 1 : (window.innerWidth <= 1120 && window.innerWidth > 777)
       ? 2 : (window.innerWidth > 1120) ? 3 : 4;
   }
@@ -75,6 +87,16 @@ export class RecommendationComponent implements OnInit {
     const endingIndex = startingIndex + obj.pageSize;
 
     this.dataAge = this.postByAge.filter(() => {
+      index++;
+      return (index > startingIndex && index <= endingIndex) ? true : false;
+    });
+  }
+  getDataPref(obj) {
+    let index = 0;
+    const startingIndex = obj.pageIndex * obj.pageSize;
+    const endingIndex = startingIndex + obj.pageSize;
+
+    this.dataPref = this.postByPref.filter(() => {
       index++;
       return (index > startingIndex && index <= endingIndex) ? true : false;
     });
