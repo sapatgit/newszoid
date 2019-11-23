@@ -1,9 +1,6 @@
 package com.stackroute.recommendationservice.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import com.stackroute.recommendationservice.domain.Post;
@@ -47,7 +44,12 @@ public class RecommendationController {
 
 	private List<PostResp> generateResp(Collection<Post> posts) {
 		List<PostResp> resp= new ArrayList<>();
+		Set<Long> id = new HashSet<>();
 		for(Post post: posts) {
+			if(id.contains(post.getVideoID())) {
+				continue;
+			}
+			id.add(post.getVideoID());
 			PostResp postResp = new PostResp(
 			        post.getVideoID(),
 					post.getTitle(),
