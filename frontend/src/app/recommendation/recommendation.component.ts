@@ -33,6 +33,7 @@ export class RecommendationComponent implements OnInit {
       + localStorage.getItem('username'), httpOptions).subscribe(
         (data) => {
           this.posts = data;
+          this.posts.sort((b, a) => a.timestamp.localeCompare(b.timestamp));
           this.getData({ pageIndex: this.page, pageSize: this.size });
 
         }/*, (error) => {
@@ -44,6 +45,7 @@ export class RecommendationComponent implements OnInit {
       + localStorage.getItem('username'), httpOptions).subscribe(
         (data) => {
           this.postByAge = data;
+          this.postByAge.sort((b, a) => a.timestamp.localeCompare(b.timestamp));
           this.getDataAge({ pageIndex: this.page, pageSize: this.size });
 
         }/*, (error) => {
@@ -54,6 +56,7 @@ export class RecommendationComponent implements OnInit {
     + localStorage.getItem('username'), httpOptions).subscribe(
       (data) => {
         this.postByPref = data;
+        this.postByPref.sort((b, a) => a.timestamp.localeCompare(b.timestamp));
         this.getDataPref({ pageIndex: this.page, pageSize: this.size });
 
       }/*, (error) => {

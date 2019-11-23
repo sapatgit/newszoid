@@ -86,6 +86,7 @@ export class CategoryComponent implements OnInit {
         (data) => {
           // tslint:disable-next-line: no-string-literal
           this.posts = data['posts'];
+          this.posts.sort((b, a) => a.timestamp.localeCompare(b.timestamp));
           this.getData({ pageIndex: this.page, pageSize: this.size });
 
         }, (error) => {
