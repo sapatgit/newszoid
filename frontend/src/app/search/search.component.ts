@@ -37,6 +37,7 @@ export class SearchComponent implements OnInit {
     this.http.get('https://newszoid.stackroute.io:8443/search-service/api/v1/category/' + query, httpOptions).subscribe(
       (data) => {
         this.response = data['posts'];
+        this.response.sort((b, a) => a.timestamp.localeCompare(b.timestamp));
         if (this.response.length >= 1) {
         this.getData({ pageIndex: this.page, pageSize: this.size });
 
@@ -46,6 +47,7 @@ export class SearchComponent implements OnInit {
         this.http.get('https://newszoid.stackroute.io:8443/search-service/api/v1/location/' + query, httpOptions).subscribe(
           (data) => {
             this.response = data['posts'];
+            this.response.sort((b, a) => a.timestamp.localeCompare(b.timestamp));
             if (this.response.length >= 1) {
               this.getData({ pageIndex: this.page, pageSize: this.size });
               }
